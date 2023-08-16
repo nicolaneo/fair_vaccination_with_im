@@ -3,13 +3,18 @@ Code to run experiments in our 2023 paper: Promoting Fair Vaccination Strategies
 
 ## Data
 ### Safegraph data from Dewey
+neighborhood patterns, monthly patterns, weekly patterns
+download which months and weeks
 ### Census data
+age, race, income
 ### NY times data
+real case counts
 
 ## Constructing mobility networks
-In the `construct_mobility_networks` folder, we include the code used from Chang et al. 2020 to construct the networks of visits from CBGs to POIs (there is currenly no license for their code). We include our modifications due to changes in what data is made available through Safegraph. Most notably, the social distancing data is no longer available, which was previously used to estimate the fraction of a CBG who were not at home. Instead, we provide code for how to estimate this using the neighborhood-patterns data from Safegraph. Additionally, we are only creating mobility networks for 3 MSAs - Philadelphia, New York and Chicago.
-The following steps are from [Chang et al.'s repository](https://github.com/snap-stanford/covid-mobility). 
+In the `construct_mobility_networks` folder, we include the code from [Chang et al. 2020](https://github.com/snap-stanford/covid-mobility) to construct the networks of visits from CBGs to POIs (there is currenly no license for their code). We include our modifications due to changes in what data is made available through Safegraph. Most notably, the social distancing data is no longer available, which was previously used to estimate the fraction of a CBG who were not at home. Instead, we provide code for how to estimate this using the neighborhood-patterns data from Safegraph. Additionally, we are only creating mobility networks for 3 MSAs - Philadelphia, New York and Chicago.
 
+1. Run `filter_patterns_data.py`
+1. Run `compute_cbg_out_proportions.py`
 1. Run `process_safegraph_data.py`
 2. To select only the data for our 3 desired MSAs, we filter the Safegraph files. We also restructure them to make them consistent with the previous work. `read_cluster_patterns.py`
 3. Generate the hourly visit matrices by running IPFP. Run python `model_experiments.py run_many_models_in_parallel just_save_ipf_output`. This will start one job for each MSA which generates the hourly visit matrices through the iterative proportional fitting procedure (IPFP).
