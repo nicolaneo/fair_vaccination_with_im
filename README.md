@@ -1,7 +1,7 @@
 # Fair Vaccination Strategies with Influence Maximization
 Code to run experiments in our 2023 paper: Promoting Fair Vaccination Strategies through Influence Maximization: A Case Study on COVID-19 Spread
 
-## Data
+## Data to download
 ### Safegraph data from Dewey
 neighborhood patterns, monthly patterns, weekly patterns
 download which months and weeks
