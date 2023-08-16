@@ -2,7 +2,7 @@
 Code to run experiments in our 2023 paper: Promoting Fair Vaccination Strategies through Influence Maximization: A Case Study on COVID-19 Spread
 
 ## Constructing mobility networks
-In the `construct_mobility_networks` folder, we include the code used from Chang et al. 2020 to construct the networks of visits from CBGs to POIs (there is currenly no license for their code). We include our modifications due to changes in what code is made available through Safegraph. Most notably, the social distancing data is no longer available, which was previously used to estimate the fraction of a CBG who were not at home. Instead, we provide code for how to estimate this useing the neighborhood-patterns data from Safegraph. Additionally, we are only creating mobility networks for 3 MSAs - Philadelphia, New York and Chicago.
+In the `construct_mobility_networks` folder, we include the code used from Chang et al. 2020 to construct the networks of visits from CBGs to POIs (there is currenly no license for their code). We include our modifications due to changes in what data is made available through Safegraph. Most notably, the social distancing data is no longer available, which was previously used to estimate the fraction of a CBG who were not at home. Instead, we provide code for how to estimate this useing the neighborhood-patterns data from Safegraph. Additionally, we are only creating mobility networks for 3 MSAs - Philadelphia, New York and Chicago.
 The following steps are from [Chang et al.'s repository](https://github.com/snap-stanford/covid-mobility). 
 
 1. Run `process_safegraph_data.py`
