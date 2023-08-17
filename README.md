@@ -3,10 +3,14 @@ Code to run experiments in our 2023 paper: Promoting Fair Vaccination Strategies
 
 ## Data to download
 ### Safegraph data from Dewey
-neighborhood patterns, monthly patterns, weekly patterns
-download which months and weeks
+Safegraph now provides their mobility data through the Dewey platform. The data is available for research groups through a paid subscription.
+We use the following mobility patterns data for the 5 week period from 2nd March to 5th April 2023:
+* monthly patterns
+* weekly patterns
+* neighborhood patterns ([documentation found here](https://docs.safegraph.com/docs/neighborhood-patterns))
 ### Census data
-age, race, income
+We use Census data from [NHGIS IPUMS](https://data2.nhgis.org/main) to collect the racial distributions, median income and median age of CBGs.
+ACS 5 year file 
 ### NY times data
 real case counts
 
@@ -23,4 +27,14 @@ In the `construct_mobility_networks` folder, we include the code from [Chang et 
 
 
 ## Running influence maximization experiments
-1. Run `influence_maximization_experiments.py` followed by your choice of MSA and vaccination experiment. E.g. `influence_maximization_experiments.py Philadelphia just_im`.
+In the `vaccination_experiments` folder, we setup and conduct our method for vaccinating with influence maximization. Our main contribution is in `vaccination methods.py`.
+Run `influence_maximization_experiments.py` followed by your choice of MSA and vaccination experiment. E.g. `influence_maximization_experiments.py Philadelphia just_im`. The choice of experiments are: 
+* `no_vax`: free-spreading Covid-19 with no vaccination strategy.
+* `random_vax`: randomly selecting CBGs to vaccinate up to the vaccine budget.
+* `vax_oldest`: this is our proxy for the current strategy, which selects CBGs with the highest median age up to the budget.
+* `just_im`: selecting CBGs to vaccinate using influence maximization, with no additional fairness constraints.
+* `im_eq_treatment`: influence maximization with equal treatment for racial groups.
+* `im_with_income`: influence maximization with equal treatment for income groups.
+* `im_with_age`: influence maximization with age-associated risk weights using the CBG median age.
+* `imr_ima`: the combination of equal treatment for racial groups and using age-associated risk weights.
+* `imi_ima`: the combination of equal treatment for income groups and using age-associated risk weights.
