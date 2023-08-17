@@ -9,8 +9,8 @@ We use the following mobility patterns data for the 5 week period from 2nd March
 * weekly patterns
 * neighborhood patterns ([documentation found here](https://docs.safegraph.com/docs/neighborhood-patterns))
 ### Census data
-We use Census data from [NHGIS IPUMS](https://data2.nhgis.org/main) to collect the racial distributions, median income and median age of CBGs.
-ACS 5 year file 
+* The ACS 5 year file provides CBG information.
+* We supplement this with data from [NHGIS IPUMS](https://data2.nhgis.org/main) to collect the median age of CBGs as well as the 1 year ACS file.
 ### NY times data
 real case counts
 
