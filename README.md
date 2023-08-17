@@ -9,9 +9,9 @@ We use the following mobility patterns data for the 5 week period from 2nd March
 * weekly patterns
 * neighborhood patterns ([documentation found here](https://docs.safegraph.com/docs/neighborhood-patterns))
 ### Census data
-* The ACS 5 year 2013-2017 file provides CBG information.
 * We supplement this with data from [NHGIS IPUMS](https://data2.nhgis.org/main) to collect the 1-year 2018 estimates of the populations of each CBG.
 * We also use the same NHGIS platform to collect the median age of CBGs.
+* The ACS 5 year 2013-2017 file and the mapping from counties to MSAs is available on Stanford's [covid-mobility repository](https://github.com/snap-stanford/covid-mobility). 
 ### NY Times data
 * We use values of real case counts from NY Times from 2020, [available here](https://github.com/nytimes/covid-19-data).
 
