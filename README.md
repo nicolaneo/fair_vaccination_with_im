@@ -9,10 +9,11 @@ We use the following mobility patterns data for the 5 week period from 2nd March
 * weekly patterns
 * neighborhood patterns ([documentation found here](https://docs.safegraph.com/docs/neighborhood-patterns))
 ### Census data
-* The ACS 5 year file provides CBG information.
-* We supplement this with data from [NHGIS IPUMS](https://data2.nhgis.org/main) to collect the median age of CBGs as well as the 1 year ACS file.
+* The ACS 5 year 2013-2017 file provides CBG information.
+* We supplement this with data from [NHGIS IPUMS](https://data2.nhgis.org/main) to collect the 1-year 2018 estimates of the populations of each CBG.
+* We also use the same NHGIS platform to collect the median age of CBGs.
 ### NY times data
-real case counts
+* We use values of real case counts from NYTimes from 2020. 
 
 ## Constructing mobility networks
 In the `construct_mobility_networks` folder, we include the code from [Chang et al. 2020](https://github.com/snap-stanford/covid-mobility) to construct the networks of visits from CBGs to POIs (there is currenly no license for their code). We include our modifications due to changes in what data is made available through Safegraph. Most notably, the social distancing data is no longer available, which was previously used to estimate the fraction of a CBG who were not at home. Instead, we provide code for how to estimate this using the neighborhood-patterns data from Safegraph. Additionally, we are only creating mobility networks for 3 MSAs - Philadelphia, New York and Chicago.
