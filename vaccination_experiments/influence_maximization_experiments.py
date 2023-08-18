@@ -1,6 +1,6 @@
 '''
 Chang et al. 2020
-(amendments made throughout by Neophytou et al. 2023)
+(amendments made throughout by anonymous authors 2023)
 '''
 
 import os
