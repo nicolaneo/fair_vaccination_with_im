@@ -5,7 +5,7 @@ import numpy as np
 
 # ### combine weekly files ###
 def filter_and_combine_weekly_files(path_to_week, week_string):
-    new_week_base_path = "/home/mila/n/nicola.neophytou/scratch/experiments/vaccination/weekly_patterns/IL_IN_WI_PA_NJ_DE_MD_NY/"
+    new_week_base_path = # anonymised path
     all_week_files = sorted([filename for filename in os.listdir(path_to_week)])
     pois_to_keep = pd.DataFrame()
     states_to_keep = ['IL','IN','WI','PA','NJ','DE','MD','NY'] # for Phildelphia, New York, Chicago MSAs
@@ -37,7 +37,7 @@ def just_filter_monthly_files(old_path_to_month, new_path_to_month):
 
 if __name__ == "__main__":    
     # filter and combine weekly files
-    weekly_base = "/home/mila/n/nicola.neophytou/scratch/experiments/vaccination/weekly_patterns/main_files/"
+    weekly_base = # anonymised path
     filter_and_combine_weekly_files(path_to_week=weekly_base + "march02/", week_string='2020-03-02')
     filter_and_combine_weekly_files(path_to_week=weekly_base + "march09/", week_string='2020-03-09')
     filter_and_combine_weekly_files(path_to_week=weekly_base + "march16/", week_string='2020-03-16')
