@@ -1,6 +1,3 @@
-'''
-Neophytou et al. 2023
-'''
 
 import datetime
 import numpy as np
