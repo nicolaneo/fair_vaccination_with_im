@@ -5,8 +5,8 @@ import datetime
 import random
 from collections import Counter
 
-NEIGHBOURHOOD_PATH = "/home/mila/n/nicola.neophytou/scratch/experiments/vaccination/neighborhood_patterns/2020_03/"
-PATH_TO_CBG_OUT_PROPORTIONS = "/home/mila/n/nicola.neophytou/scratch/experiments/vaccination/neighborhood_patterns/cbg_out_proportions/"
+NEIGHBOURHOOD_PATH = # anonymised path
+PATH_TO_CBG_OUT_PROPORTIONS = # anonymised path
 
 MIN_DATETIME = datetime.datetime(2020, 3, 2, 0)
 MAX_DATETIME = datetime.datetime(2020, 4, 5, 23) # 5 weeks
@@ -108,8 +108,8 @@ def compute_cbg_day_prop_out():
     n_days = len(dates) + 1 # 36, because we will process 1st March but don't include it later
 
     # process neighborhood patterns for march and april
-    df = process_neighborhood_patterns("/home/mila/n/nicola.neophytou/scratch/experiments/vaccination/neighborhood_patterns/2020_03/neighborhood_patterns.csv.gz", n_days=31)
-    april_df = process_neighborhood_patterns("/home/mila/n/nicola.neophytou/scratch/experiments/vaccination/neighborhood_patterns/2020_04/neighborhood_patterns.csv.gz", n_days=5)
+    df = process_neighborhood_patterns(anonymised_path, n_days=31)
+    april_df = process_neighborhood_patterns(anonymised_path, n_days=5)
     april_df = april_df.rename(columns={'day_0': 'day_31', 'day_1': 'day_32', 'day_2':'day_33', 'day_3':'day_34', 'day_4':'day_35'})
     df_len_before = len(df)
     df = pd.merge(df, april_df, on=['area'])
