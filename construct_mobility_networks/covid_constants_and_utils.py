@@ -26,7 +26,7 @@ import time
 import math
 import random
 
-BASE_DIR = '/home/mila/n/nicola.neophytou/scratch/experiments/vaccination/' 
+BASE_DIR = # anonymised path
 PATH_TO_OVERALL_HOME_PANEL_SUMMARY = os.path.join(BASE_DIR, 'monthly_patterns/2020_02/visit_panel_summary.csv') 
 ANNOTATED_H5_DATA_DIR = os.path.join(BASE_DIR, 'all_aggregate_data/chunks_with_demographic_annotations/') 
 CHUNK_FILENAME = 'chunk_1.2017-3.2020_c2.h5' 
@@ -46,7 +46,7 @@ PATH_FOR_CBG_MAPPER = os.path.join(BASE_DIR, 'census/new_census_data/')
 PATH_FOR_CBG_MAPPER_BY_STATE = os.path.join(BASE_DIR, 'census/census_block_group_shapefiles_by_state/')
 PATH_TO_COUNTY_TO_MSA_MAPPING = os.path.join(BASE_DIR, 'county_to_msa/list1.csv')
 PATH_TO_NYT_DATA = os.path.join(BASE_DIR, 'ny_times/us-counties-march27-to-april04.csv')
-PATH_TO_CBG_OUT_PROPORTIONS = "/home/mila/n/nicola.neophytou/scratch/experiments/vaccination/neighborhood_patterns/cbg_out_proportions/"
+PATH_TO_CBG_OUT_PROPORTIONS = # anonymised path
 
 # experimental params
 TRAIN_TEST_PARTITION = datetime.datetime(2020, 4, 1) 
