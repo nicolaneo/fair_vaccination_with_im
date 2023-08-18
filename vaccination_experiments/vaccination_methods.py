@@ -295,7 +295,7 @@ def evaluate(V, all_model_kwargs):
     msa_name = all_model_kwargs['vax_kwargs']['msa_name']
     vax_experiment = all_model_kwargs['vax_kwargs']['vax_experiment']
     date_and_time = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
-    path = '/home/mila/n/nicola.neophytou/scratch/experiments/vaccination/outputs/'
+    path = # anonymised path
 
     with open(path + 'results_' + str(msa_name) + '_' + str(vax_experiment) + '_' + str(date_and_time) + '.txt', 'w') as f:
         for line in lines_to_output:
