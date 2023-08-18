@@ -112,7 +112,7 @@ class Model:
             print("vaxed cbgs: ")
             print(self.VAXED_CBGS)
 
-        #zero out visits from vaccinated cbgs - doesn't change anything if num_sus already set to zero :(
+        #zero out visits from vaccinated cbgs
         if self.VACCINATE:
             multiplier = np.ones(self.N)
             multiplier[self.VAXED_CBGS] = 0.
@@ -172,7 +172,7 @@ class Model:
         self.variance = (np.ones(shape=self.expectation.shape) - np.full(self.num_seeds, self.P_SICK_AT_T0)) * np.full((self.num_seeds), first_exp)
 
         # Initialize exposed/latent individuals
-        self.P0 = np.random.binomial( # HERE
+        self.P0 = np.random.binomial( 
             self.CBG_SIZES,
             self.P_SICK_AT_T0,
             size=(self.num_seeds, self.N))
@@ -492,27 +492,10 @@ class Model:
         # N is number of CBGs
         # S is number of seeds
 
-        # self.cbg_infected, latent, removed etc are all fine, definitely zeros for vaccinated cbgs.
-        # if t > 330:
-        #     print(self.cbg_latent[:, :3])
-        #     print(self.cbg_infected[:, :3])
-        #     print(self.cbg_removed[:, :3])
-
         ### Compute CBG densities and infection rates
         cbg_densities = self.cbg_infected / self.CBG_SIZES  # S x N
-        # print("time = " + str(t))
-        # print("exposed:")
-        # print(np.sum(self.cbg_latent, axis=1))
-        # print("infected:")
-        # print(np.sum(self.cbg_infected, axis=1))
-        # print("removed:")
-        # print(np.sum(self.cbg_removed, axis=1))
-
         overall_densities = (np.sum(self.cbg_infected, axis=1) / np.sum(self.CBG_SIZES)).reshape(-1, 1)  # S x 1, mean cbg density for per seed
         num_sus = np.clip(self.CBG_SIZES - self.cbg_latent - self.cbg_infected - self.cbg_removed, 0, None)  # S x N
-
-        # print("num susceptible:")
-        # print(np.sum(num_sus, axis=1))
 
         if self.VACCINATE: # set susceptible counts to zero for vaxed cbgs
             if (self.simulation_type == 'eval' and t > self.start_eval_hour): # or self.simulation_type == 'prior':
@@ -608,28 +591,15 @@ class Model:
             self.cbg_num_out = col_sums
             # S x M = (M) * ((M x N) @ (S x N).T ).T
             poi_infection_rates = self.POI_FACTORS * (poi_cbg_visits @ cbg_densities.T).T ### matrix multiplication
-            #print(poi_infection_rates)
             #self.num_poi_infection_rates_clipped = np.sum(poi_infection_rates > 1)
             if self.clip_poisson_approximation:
                 poi_infection_rates = np.clip(poi_infection_rates, None, 1.0)
 
             # S x N = (S x N) * ((S x M) @ (M x N))
             cbg_mean_new_cases_from_poi = sus_frac * (poi_infection_rates @ poi_cbg_visits) # some of this is larger even when more vaccinated
-            #print(np.sum(sus_frac, axis=1))
-
-            # print(np.sum(cbg_mean_new_cases_from_poi, axis=1).shape == self.expectation.shape) # True
             self.expectation += np.sum(cbg_mean_new_cases_from_poi, axis=1) # S x 1
             self.variance += np.sum(cbg_mean_new_cases_from_poi, axis=1) # S x 1
-
-            # print("poisson input:")
-            # print(np.sum(cbg_mean_new_cases_from_poi, axis=1))
             num_cases_from_poi = np.random.poisson(cbg_mean_new_cases_from_poi) # S x N
-            # print("poisson output:")
-            # print(np.sum(num_cases_from_poi, axis=1))
-
-            #print("Values bigger than 0 =", num_cases_from_poi[num_cases_from_poi>0])
-            #print("Their indices are ", np.nonzero(num_cases_from_poi > 0))
-            #self.num_cbgs_active_at_pois = np.sum(cbg_mean_new_cases_from_poi > 0)
 
         # for vaccine simulation no need to do this
         # if len(self.groups_to_track_num_cases_per_poi) > 0:
@@ -649,32 +619,15 @@ class Model:
         self.cbg_new_cases_from_poi = np.clip(num_cases_from_poi, None, num_sus)
         num_sus_remaining = num_sus - self.cbg_new_cases_from_poi
 
-        # print("num sus remaining:")
-        # print(np.sum(num_sus_remaining, axis=1))
-        # print("cbg base infection rates:")
-        # print(np.sum(cbg_base_infection_rates, axis=1))
-
         self.expectation += np.sum(num_sus_remaining.astype(int) * cbg_base_infection_rates, axis=1)
         one_minus_p = np.ones(shape=cbg_base_infection_rates.shape) - cbg_base_infection_rates
         self.variance += np.sum((num_sus_remaining * cbg_base_infection_rates) * one_minus_p, axis=1)
 
-        self.cbg_new_cases_from_base = np.random.binomial( # HERE
+        self.cbg_new_cases_from_base = np.random.binomial( 
             num_sus_remaining.astype(int),
             cbg_base_infection_rates)
-        
-        # print("binomial output:")
-        # print(np.sum(self.cbg_new_cases_from_base, axis=1))
 
         self.cbg_new_cases = self.cbg_new_cases_from_poi + self.cbg_new_cases_from_base
-
-        # print("t= " + str(t))
-        # print("new poi cases:")
-        # print(np.sum(self.cbg_new_cases_from_poi))
-        # print("new base cases:")
-        # print(np.sum(self.cbg_new_cases_from_base))
-
-        # print("new cases:")
-        # print(np.sum(self.cbg_new_cases))
 
         # Keep track of clipping
         # self.clipping_monitor['num_base_infection_rates_clipped'].append(self.num_base_infection_rates_clipped)
