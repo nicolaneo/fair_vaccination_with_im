@@ -16,7 +16,7 @@ We use the following mobility patterns data for the 5 week period from 2nd March
 * We use values of real case counts from NY Times from 2020, [available here](https://github.com/nytimes/covid-19-data).
 
 ## Environment
-We use a conda environment which can be repliated using the command `conda env create -f vax_env.yml`. This should be setup before running any code.
+We use a conda environment which can be repliated using the command `conda env create -f vax_env.yml`. This environment should be activated before running any code.
 
 ## Constructing mobility networks
 In the `construct_mobility_networks` folder, we include the code from [Chang et al. 2020](https://github.com/snap-stanford/covid-mobility) to construct the networks of visits from CBGs to POIs (there is currenly no license for on code). They use an iterative proportional fitting procedure (IPFP) to construct the hourly edge weights. We include our modifications due to changes in what data is made available through Safegraph. Most notably, the social distancing data is no longer available, which was previously used to estimate the fraction of a CBG who were not at home. Instead, we provide code for how to estimate this using the neighborhood-patterns data from Safegraph. Additionally, we are only creating mobility networks for three MSAs - Philadelphia, New York and Chicago.
