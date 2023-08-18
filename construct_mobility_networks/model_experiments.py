@@ -352,10 +352,6 @@ def fit_disease_model_on_real_data(d,
         mapper_d = dict(zip(acs_d['census_block_group'].values, acs_d[attr_col_name].values))
 
         attribute_vals = np.array([mapper_d[a] if a in mapper_d and cbgs_to_idxs[a] in cbg_idx_to_track else np.nan for a in all_unique_cbgs])
-
-        # with open('/home/mila/n/nicola.neophytou/scratch/experiments/vaccination/all_aggregate_data/cbg_demographics/cbg_' + attribute + '.pkl', 'wb') as f: # output mapping of CBGs to attributes
-        #     pickle.dump(attribute_vals, f)
-        
         cbg_demographics[attribute] = attribute_vals
 
         non_nan_vals = attribute_vals[~np.isnan(attribute_vals)]
