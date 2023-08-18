@@ -914,7 +914,7 @@ def load_age_data():
     """
     Load in a dataframe with rows for the 2018 ACS Census median age of each CBG.
     """
-    PATH_TO_ACS_1YR_DATA = "/home/mila/n/nicola.neophytou/scratch/experiments/vaccination/census/1_year_2018/nhgis0008_ds244_20195_blck_grp_E.csv"
+    PATH_TO_ACS_1YR_DATA = # anonymised path
     acs_data = pd.read_csv(PATH_TO_ACS_1YR_DATA,
                           encoding='cp1252',
                        usecols=['STATEA', 'COUNTYA', 'TRACTA', 'BLKGRPA','ALT1E001'], # median age of cbg
